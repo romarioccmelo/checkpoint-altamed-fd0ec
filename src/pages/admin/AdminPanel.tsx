@@ -7,6 +7,7 @@ import {
   DialogTitle,
   DialogTrigger,
   DialogFooter,
+  DialogDescription,
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -71,31 +72,38 @@ const AdminPanelPage = () => {
         </TabsList>
 
         <TabsContent value="users">
-          <Card>
+          <Card className="shadow-md-1 rounded-lg">
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle>Usuários</CardTitle>
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button>
+                  <Button className="rounded-sm">
                     <UserPlus className="mr-2 h-4 w-4" /> Adicionar Usuário
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px]">
+                <DialogContent className="sm:max-w-[425px] rounded-lg">
                   <DialogHeader>
                     <DialogTitle>Adicionar Novo Usuário</DialogTitle>
+                    <DialogDescription>
+                      Preencha os dados para criar um novo acesso.
+                    </DialogDescription>
                   </DialogHeader>
                   <div className="grid gap-4 py-4">
                     <div className="grid grid-cols-4 items-center gap-4">
                       <Label htmlFor="name" className="text-right">
                         Nome
                       </Label>
-                      <Input id="name" className="col-span-3" />
+                      <Input id="name" className="col-span-3 input-material" />
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
                       <Label htmlFor="email" className="text-right">
                         Email
                       </Label>
-                      <Input id="email" type="email" className="col-span-3" />
+                      <Input
+                        id="email"
+                        type="email"
+                        className="col-span-3 input-material"
+                      />
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
                       <Label htmlFor="password" className="text-right">
@@ -104,7 +112,7 @@ const AdminPanelPage = () => {
                       <Input
                         id="password"
                         type="password"
-                        className="col-span-3"
+                        className="col-span-3 input-material"
                       />
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
@@ -112,7 +120,7 @@ const AdminPanelPage = () => {
                         Cargo
                       </Label>
                       <Select>
-                        <SelectTrigger className="col-span-3">
+                        <SelectTrigger className="col-span-3 rounded-sm">
                           <SelectValue placeholder="Selecione" />
                         </SelectTrigger>
                         <SelectContent>
@@ -126,7 +134,9 @@ const AdminPanelPage = () => {
                     </div>
                   </div>
                   <DialogFooter>
-                    <Button type="submit">Salvar</Button>
+                    <Button type="submit" className="rounded-sm">
+                      Salvar
+                    </Button>
                   </DialogFooter>
                 </DialogContent>
               </Dialog>
@@ -150,10 +160,18 @@ const AdminPanelPage = () => {
                       <TableCell>{user.role}</TableCell>
                       <TableCell>{user.status}</TableCell>
                       <TableCell className="flex justify-end gap-2">
-                        <Button variant="outline" size="icon">
+                        <Button
+                          variant="outline"
+                          size="icon"
+                          className="rounded-sm"
+                        >
                           <Edit className="h-4 w-4" />
                         </Button>
-                        <Button variant="destructive" size="icon">
+                        <Button
+                          variant="destructive"
+                          size="icon"
+                          className="rounded-sm"
+                        >
                           <Trash2 className="h-4 w-4" />
                         </Button>
                       </TableCell>
@@ -165,7 +183,7 @@ const AdminPanelPage = () => {
           </Card>
         </TabsContent>
         <TabsContent value="products">
-          <Card>
+          <Card className="shadow-md-1 rounded-lg">
             <CardHeader>
               <CardTitle>Gestão de Produtos</CardTitle>
             </CardHeader>
@@ -175,7 +193,7 @@ const AdminPanelPage = () => {
           </Card>
         </TabsContent>
         <TabsContent value="clients">
-          <Card>
+          <Card className="shadow-md-1 rounded-lg">
             <CardHeader>
               <CardTitle>Gestão de Clientes</CardTitle>
             </CardHeader>
@@ -185,7 +203,7 @@ const AdminPanelPage = () => {
           </Card>
         </TabsContent>
         <TabsContent value="settings">
-          <Card>
+          <Card className="shadow-md-1 rounded-lg">
             <CardHeader>
               <CardTitle>Metas e Parâmetros</CardTitle>
             </CardHeader>

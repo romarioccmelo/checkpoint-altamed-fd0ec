@@ -14,7 +14,7 @@ import { Mail, ArrowLeft } from 'lucide-react'
 export default function ForgotPassword() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-secondary to-background p-4">
-      <Card className="w-full max-w-md shadow-lg animate-fade-in">
+      <Card className="w-full max-w-md shadow-md-3 animate-fade-in rounded-lg">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold text-foreground">
             Esqueceu sua senha?
@@ -34,11 +34,11 @@ export default function ForgotPassword() {
                   id="email"
                   type="email"
                   placeholder="seu-email@altamed.com"
-                  className="pl-10"
+                  className="pl-10 input-material"
                 />
               </div>
             </div>
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full rounded-sm">
               Enviar link de redefinição
             </Button>
           </form>

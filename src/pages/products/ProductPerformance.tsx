@@ -105,7 +105,7 @@ const ProductPerformancePage = () => {
   return (
     <div className="space-y-6 animate-fade-in-up">
       {criticalProducts.length > 0 && (
-        <Card className="border-destructive bg-destructive/10">
+        <Card className="border-destructive bg-destructive/10 rounded-lg shadow-md-1">
           <CardHeader className="flex flex-row items-center gap-4">
             <AlertTriangle className="h-8 w-8 text-destructive" />
             <div>
@@ -130,7 +130,7 @@ const ProductPerformancePage = () => {
         </Card>
       )}
 
-      <Card>
+      <Card className="shadow-md-1 rounded-lg">
         <CardHeader>
           <CardTitle>Relatório de Desempenho de Produtos</CardTitle>
         </CardHeader>
@@ -191,7 +191,10 @@ const ProductPerformancePage = () => {
                   </TableCell>
                   <TableCell>R$ {product.lostRevenue.toFixed(2)}</TableCell>
                   <TableCell>
-                    <Badge variant={getStatusBadgeVariant(product.status)}>
+                    <Badge
+                      variant={getStatusBadgeVariant(product.status)}
+                      className="rounded-sm"
+                    >
                       {product.status}
                     </Badge>
                   </TableCell>

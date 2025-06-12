@@ -68,7 +68,7 @@ const DataImportPage = () => {
 
   return (
     <div className="space-y-6 animate-fade-in-up">
-      <Card>
+      <Card className="shadow-md-1 rounded-lg">
         <CardHeader>
           <CardTitle>Upload de Dados</CardTitle>
           <CardDescription>
@@ -105,7 +105,7 @@ const DataImportPage = () => {
             />
           </div>
           {file && (
-            <Alert>
+            <Alert className="rounded-sm">
               <AlertCircle className="h-4 w-4" />
               <AlertTitle>Validação</AlertTitle>
               <AlertDescription>
@@ -114,13 +114,13 @@ const DataImportPage = () => {
               </AlertDescription>
             </Alert>
           )}
-          <Button disabled={!file} className="w-full sm:w-auto">
+          <Button disabled={!file} className="w-full sm:w-auto rounded-sm">
             <Play className="mr-2 h-4 w-4" /> Processar Dados
           </Button>
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="shadow-md-1 rounded-lg">
         <CardHeader>
           <CardTitle>Histórico de Uploads</CardTitle>
         </CardHeader>

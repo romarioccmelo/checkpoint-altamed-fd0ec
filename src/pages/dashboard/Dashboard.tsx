@@ -1,17 +1,14 @@
 import { useState } from 'react'
 import { addDays } from 'date-fns'
 import {
-  Bar,
-  BarChart,
-  CartesianGrid,
   Line,
   LineChart,
   Pie,
   PieChart,
   ResponsiveContainer,
-  Tooltip,
   XAxis,
   YAxis,
+  CartesianGrid,
   Legend,
 } from 'recharts'
 import { Button } from '@/components/ui/button'
@@ -60,10 +57,10 @@ const evolutionData = [
 ]
 
 const productShareData = [
-  { name: 'Produto A', value: 400 },
-  { name: 'Produto B', value: 300 },
-  { name: 'Produto C', value: 300 },
-  { name: 'Produto D', value: 200 },
+  { name: 'Produto A', value: 400, fill: 'var(--color-chart-1)' },
+  { name: 'Produto B', value: 300, fill: 'var(--color-chart-2)' },
+  { name: 'Produto C', value: 300, fill: 'var(--color-chart-3)' },
+  { name: 'Produto D', value: 200, fill: 'var(--color-chart-4)' },
 ]
 
 const chartConfig = {
@@ -83,14 +80,14 @@ const DashboardPage = () => {
 
   return (
     <div className="space-y-6 animate-fade-in-up">
-      <Card>
+      <Card className="shadow-md-1 rounded-lg">
         <CardHeader>
           <CardTitle>Filtros</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-wrap gap-4">
           <DateRangePicker date={date} onDateChange={setDate} />
           <Select>
-            <SelectTrigger className="w-full sm:w-[180px]">
+            <SelectTrigger className="w-full sm:w-[180px] rounded-sm">
               <SelectValue placeholder="Vendedor" />
             </SelectTrigger>
             <SelectContent>
@@ -98,7 +95,7 @@ const DashboardPage = () => {
             </SelectContent>
           </Select>
           <Select>
-            <SelectTrigger className="w-full sm:w-[180px]">
+            <SelectTrigger className="w-full sm:w-[180px] rounded-sm">
               <SelectValue placeholder="Cliente" />
             </SelectTrigger>
             <SelectContent>
@@ -106,7 +103,7 @@ const DashboardPage = () => {
             </SelectContent>
           </Select>
           <Select>
-            <SelectTrigger className="w-full sm:w-[180px]">
+            <SelectTrigger className="w-full sm:w-[180px] rounded-sm">
               <SelectValue placeholder="Segmento" />
             </SelectTrigger>
             <SelectContent>
@@ -114,14 +111,16 @@ const DashboardPage = () => {
             </SelectContent>
           </Select>
           <div className="flex gap-2 ml-auto">
-            <Button>Aplicar</Button>
-            <Button variant="outline">Limpar</Button>
+            <Button className="rounded-sm">Aplicar</Button>
+            <Button variant="outline" className="rounded-sm">
+              Limpar
+            </Button>
           </div>
         </CardContent>
       </Card>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        <Card className="hover:shadow-lg hover:-translate-y-0.5 transition-transform duration-200">
+        <Card className="shadow-md-1 hover:shadow-md-2 transition-shadow duration-200 rounded-lg">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Receita Geral</CardTitle>
             <DollarSign className="h-4 w-4 text-muted-foreground" />
@@ -142,7 +141,7 @@ const DashboardPage = () => {
             </p>
           </CardContent>
         </Card>
-        <Card className="hover:shadow-lg hover:-translate-y-0.5 transition-transform duration-200">
+        <Card className="shadow-md-1 hover:shadow-md-2 transition-shadow duration-200 rounded-lg">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Ticket Médio</CardTitle>
             <ShoppingCart className="h-4 w-4 text-muted-foreground" />
@@ -163,7 +162,7 @@ const DashboardPage = () => {
             </p>
           </CardContent>
         </Card>
-        <Card className="hover:shadow-lg hover:-translate-y-0.5 transition-transform duration-200 col-span-1 md:col-span-2">
+        <Card className="shadow-md-1 hover:shadow-md-2 transition-shadow duration-200 rounded-lg col-span-1 md:col-span-2">
           <CardHeader>
             <CardTitle>Share por Produto</CardTitle>
             <CardDescription>
@@ -196,7 +195,7 @@ const DashboardPage = () => {
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
-        <Card className="hover:shadow-lg hover:-translate-y-0.5 transition-transform duration-200">
+        <Card className="shadow-md-1 hover:shadow-md-2 transition-shadow duration-200 rounded-lg">
           <CardHeader>
             <CardTitle>Evolução de Receita e Volume</CardTitle>
           </CardHeader>
@@ -233,7 +232,7 @@ const DashboardPage = () => {
             </ChartContainer>
           </CardContent>
         </Card>
-        <Card className="hover:shadow-lg hover:-translate-y-0.5 transition-transform duration-200">
+        <Card className="shadow-md-1 hover:shadow-md-2 transition-shadow duration-200 rounded-lg">
           <CardHeader>
             <CardTitle>Mix de Produtos (Top 5 Faturamento)</CardTitle>
           </CardHeader>

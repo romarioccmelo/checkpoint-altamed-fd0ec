@@ -14,7 +14,7 @@ import { Mail, Lock, User, ArrowLeft } from 'lucide-react'
 export default function Register() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-secondary to-background p-4">
-      <Card className="w-full max-w-md shadow-lg animate-fade-in">
+      <Card className="w-full max-w-md shadow-md-3 animate-fade-in rounded-lg">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold text-foreground">
             Crie sua conta
@@ -33,7 +33,7 @@ export default function Register() {
                   id="name"
                   type="text"
                   placeholder="Seu nome completo"
-                  className="pl-10"
+                  className="pl-10 input-material"
                 />
               </div>
             </div>
@@ -45,7 +45,7 @@ export default function Register() {
                   id="email"
                   type="email"
                   placeholder="seu-email@altamed.com"
-                  className="pl-10"
+                  className="pl-10 input-material"
                 />
               </div>
             </div>
@@ -57,7 +57,7 @@ export default function Register() {
                   id="password"
                   type="password"
                   placeholder="Crie uma senha forte"
-                  className="pl-10"
+                  className="pl-10 input-material"
                 />
               </div>
             </div>
@@ -69,11 +69,11 @@ export default function Register() {
                   id="confirm-password"
                   type="password"
                   placeholder="Confirme sua senha"
-                  className="pl-10"
+                  className="pl-10 input-material"
                 />
               </div>
             </div>
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full rounded-sm">
               Cadastrar
             </Button>
           </form>

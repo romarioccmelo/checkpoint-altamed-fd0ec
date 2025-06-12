@@ -85,7 +85,7 @@ const mockData: PriceData[] = [
 const PriceGuidancePage = () => {
   return (
     <div className="space-y-6 animate-fade-in-up">
-      <Card>
+      <Card className="shadow-md-1 rounded-lg">
         <CardHeader>
           <CardTitle>Busca e Filtros</CardTitle>
         </CardHeader>
@@ -94,11 +94,11 @@ const PriceGuidancePage = () => {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               placeholder="Buscar por nome do medicamento..."
-              className="pl-10"
+              className="pl-10 input-material"
             />
           </div>
           <Select>
-            <SelectTrigger className="w-full sm:w-[180px]">
+            <SelectTrigger className="w-full sm:w-[180px] rounded-sm">
               <SelectValue placeholder="Segmento" />
             </SelectTrigger>
             <SelectContent>
@@ -106,20 +106,20 @@ const PriceGuidancePage = () => {
             </SelectContent>
           </Select>
           <Select>
-            <SelectTrigger className="w-full sm:w-[180px]">
+            <SelectTrigger className="w-full sm:w-[180px] rounded-sm">
               <SelectValue placeholder="Estado" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">Todos</SelectItem>
             </SelectContent>
           </Select>
-          <Button className="w-full sm:w-auto">
+          <Button className="w-full sm:w-auto rounded-sm">
             <Search className="mr-2 h-4 w-4" /> Buscar
           </Button>
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="shadow-md-1 rounded-lg">
         <CardHeader>
           <CardTitle>Direcionamento de Preços</CardTitle>
         </CardHeader>

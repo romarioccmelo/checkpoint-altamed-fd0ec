@@ -101,7 +101,7 @@ const SellerComparisonPage = () => {
   return (
     <div className="space-y-6 animate-fade-in-up">
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
+        <Card className="shadow-md-1 rounded-lg">
           <CardHeader>
             <CardTitle>Receita Total da Equipe</CardTitle>
           </CardHeader>
@@ -109,7 +109,7 @@ const SellerComparisonPage = () => {
             R$ {teamRevenue.toLocaleString('pt-BR')}
           </CardContent>
         </Card>
-        <Card>
+        <Card className="shadow-md-1 rounded-lg">
           <CardHeader>
             <CardTitle>Meta da Equipe</CardTitle>
           </CardHeader>
@@ -117,7 +117,7 @@ const SellerComparisonPage = () => {
             R$ {teamGoal.toLocaleString('pt-BR')}
           </CardContent>
         </Card>
-        <Card>
+        <Card className="shadow-md-1 rounded-lg">
           <CardHeader>
             <CardTitle>Meta Atingida</CardTitle>
           </CardHeader>
@@ -128,7 +128,7 @@ const SellerComparisonPage = () => {
             <Progress value={(teamRevenue / teamGoal) * 100} className="mt-2" />
           </CardContent>
         </Card>
-        <Card>
+        <Card className="shadow-md-1 rounded-lg">
           <CardHeader>
             <CardTitle>Top Performer</CardTitle>
           </CardHeader>
@@ -139,7 +139,7 @@ const SellerComparisonPage = () => {
         </Card>
       </div>
 
-      <Card>
+      <Card className="shadow-md-1 rounded-lg">
         <CardHeader>
           <CardTitle>Desempenho por Vendedor</CardTitle>
         </CardHeader>
@@ -151,7 +151,7 @@ const SellerComparisonPage = () => {
                 key={seller.id}
                 className="border-b"
               >
-                <AccordionTrigger className="hover:no-underline p-4">
+                <AccordionTrigger className="hover:no-underline p-4 rounded-sm">
                   <div className="flex items-center gap-4 w-full">
                     <Avatar className="h-12 w-12">
                       <AvatarImage src={seller.avatarUrl} alt={seller.name} />
@@ -236,7 +236,7 @@ const SellerComparisonPage = () => {
                             />
                             <YAxis
                               tickFormatter={(value) =>
-                                `R$${Number(value) / 1000}k`
+                                `R$${(Number(value) / 1000).toFixed(0)}k`
                               }
                               fontSize={12}
                             />

@@ -79,7 +79,7 @@ export default function Index() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-secondary to-background p-4">
-      <Card className="w-full max-w-md shadow-lg animate-fade-in">
+      <Card className="w-full max-w-md shadow-md-3 animate-fade-in rounded-lg">
         <CardHeader className="text-center">
           <img
             src="https://img.usecurling.com/i?q=altamed&color=blue&shape=solid"
@@ -101,7 +101,7 @@ export default function Index() {
                   id="email"
                   type="email"
                   placeholder="seu-email@altamed.com"
-                  className="pl-10"
+                  className="pl-10 input-material"
                   {...form.register('email')}
                   disabled={isLoading || isMockLoading}
                 />
@@ -120,7 +120,7 @@ export default function Index() {
                   id="password"
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Sua senha"
-                  className="pl-10 pr-10"
+                  className="pl-10 pr-10 input-material"
                   {...form.register('password')}
                   disabled={isLoading || isMockLoading}
                 />
@@ -158,7 +158,7 @@ export default function Index() {
             </div>
             <Button
               type="submit"
-              className="w-full"
+              className="w-full rounded-sm"
               disabled={isLoading || isMockLoading}
             >
               {isLoading ? 'Entrando...' : 'Entrar'}
@@ -177,7 +177,7 @@ export default function Index() {
               </div>
               <Button
                 variant="secondary"
-                className="w-full"
+                className="w-full rounded-sm"
                 onClick={handleMockLogin}
                 disabled={isLoading || isMockLoading}
               >

@@ -116,7 +116,7 @@ const NavLink = ({
             <Link
               to={item.href}
               className={cn(
-                'flex items-center justify-center p-3 rounded-lg transition-colors group',
+                'flex items-center justify-center p-3 rounded-md transition-colors group',
                 isActive ? 'bg-secondary' : 'hover:bg-secondary',
               )}
             >
@@ -132,7 +132,7 @@ const NavLink = ({
     <Link
       to={item.href}
       className={cn(
-        'flex items-center p-3 rounded-lg transition-colors group',
+        'flex items-center p-3 rounded-md transition-colors group',
         isActive
           ? 'bg-secondary text-primary font-semibold'
           : 'hover:bg-secondary',
@@ -171,9 +171,9 @@ const Sidebar = ({
         {!isCollapsed && (
           <Link to="/dashboard">
             <img
-              src="https://mlt9eik4gtme.i.optimole.com/w:150/h:150/q:mauto/rt:fill/g:ce/f:best/https://altamedltda.com.br/wp-content/uploads/2023/07/logo500.png"
+              src="https://img.usecurling.com/i?q=altamed&color=blue&shape=solid"
               alt="Logo da Altamed"
-              className="h-12"
+              className="h-8"
             />
           </Link>
         )}
@@ -203,7 +203,7 @@ const Sidebar = ({
       <div className="p-2 border-t">
         <button
           onClick={logout}
-          className="flex items-center p-3 rounded-lg transition-colors group w-full hover:bg-secondary"
+          className="flex items-center p-3 rounded-md transition-colors group w-full hover:bg-secondary"
         >
           <LogOut
             className={cn(
@@ -240,9 +240,9 @@ const MobileSidebar = () => {
         <div className="p-4 border-b h-16 flex items-center">
           <Link to="/dashboard">
             <img
-              src="https://mlt9eik4gtme.i.optimole.com/w:150/h:150/q:mauto/rt:fill/g:ce/f:best/https://altamedltda.com.br/wp-content/uploads/2023/07/logo500.png"
+              src="https://img.usecurling.com/i?q=altamed&color=blue&shape=solid"
               alt="Logo da Altamed"
-              className="h-12"
+              className="h-8"
             />
           </Link>
         </div>
@@ -252,7 +252,7 @@ const MobileSidebar = () => {
               key={item.href}
               to={item.href}
               className={cn(
-                'flex items-center p-3 rounded-lg transition-colors',
+                'flex items-center p-3 rounded-md transition-colors',
                 location.pathname.startsWith(item.href)
                   ? 'bg-secondary text-primary font-semibold'
                   : 'hover:bg-secondary',
@@ -266,7 +266,7 @@ const MobileSidebar = () => {
         <div className="p-2 border-t">
           <button
             onClick={logout}
-            className="flex items-center p-3 rounded-lg transition-colors group w-full hover:bg-secondary"
+            className="flex items-center p-3 rounded-md transition-colors group w-full hover:bg-secondary"
           >
             <LogOut className="h-5 w-5 mr-4 text-muted-foreground group-hover:text-primary" />
             <span className="text-sm font-medium">Sair</span>
@@ -294,7 +294,7 @@ const Header = () => {
     )?.[1] || 'Checkpoint Altamed'
 
   return (
-    <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b bg-background/95 backdrop-blur-sm px-4 md:px-6">
+    <header className="sticky top-0 z-30 flex h-16 items-center justify-between shadow-md-1 bg-background/95 backdrop-blur-sm px-4 md:px-6">
       <div className="flex items-center gap-4">
         <MobileSidebar />
         <h1 className="text-xl font-bold text-foreground">{pageTitle}</h1>
