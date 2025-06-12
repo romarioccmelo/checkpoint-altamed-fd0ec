@@ -133,7 +133,7 @@ const SellerComparisonPage = () => {
             <CardTitle>Top Performer</CardTitle>
           </CardHeader>
           <CardContent className="flex items-center gap-2">
-            <Award className="h-6 w-6 text-amber-500" />
+            <Award className="h-6 w-6 text-warning" />
             <span className="text-lg font-semibold">{topPerformer.name}</span>
           </CardContent>
         </Card>
