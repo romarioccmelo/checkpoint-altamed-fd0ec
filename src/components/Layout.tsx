@@ -169,11 +169,13 @@ const Sidebar = ({
         )}
       >
         {!isCollapsed && (
-          <img
-            src="https://img.usecurling.com/i?q=altamed&color=blue&shape=solid"
-            alt="Altamed Logo"
-            className="h-8"
-          />
+          <Link to="/dashboard">
+            <img
+              src="https://mlt9eik4gtme.i.optimole.com/w:150/h:150/q:mauto/rt:fill/g:ce/f:best/https://altamedltda.com.br/wp-content/uploads/2023/07/logo500.png"
+              alt="Logo da Altamed"
+              className="h-12"
+            />
+          </Link>
         )}
         <Button
           variant="ghost"
@@ -236,11 +238,13 @@ const MobileSidebar = () => {
       </SheetTrigger>
       <SheetContent side="left" className="p-0 w-[240px] flex flex-col bg-card">
         <div className="p-4 border-b h-16 flex items-center">
-          <img
-            src="https://img.usecurling.com/i?q=altamed&color=blue&shape=solid"
-            alt="Altamed Logo"
-            className="h-8"
-          />
+          <Link to="/dashboard">
+            <img
+              src="https://mlt9eik4gtme.i.optimole.com/w:150/h:150/q:mauto/rt:fill/g:ce/f:best/https://altamedltda.com.br/wp-content/uploads/2023/07/logo500.png"
+              alt="Logo da Altamed"
+              className="h-12"
+            />
+          </Link>
         </div>
         <nav className="flex-1 p-2 space-y-1">
           {filteredNavItems.map((item) => (
