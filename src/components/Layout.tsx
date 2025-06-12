@@ -1,5 +1,5 @@
-import { useState, ReactNode } from 'react'
-import { Outlet, useLocation, Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { Outlet, useLocation, Link } from 'react-router-dom'
 import { useAuth, UserRole } from '@/contexts/AuthContext'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -13,9 +13,7 @@ import {
   Upload,
   LogOut,
   Menu,
-  UserCircle,
   ChevronLeft,
-  ChevronRight,
 } from 'lucide-react'
 import {
   Tooltip,
@@ -32,6 +30,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 type NavItem = {
   href: string
@@ -159,7 +158,7 @@ const Sidebar = ({
   return (
     <aside
       className={cn(
-        'hidden md:flex flex-col h-full bg-card border-r transition-width duration-200 ease-in-out z-40',
+        'hidden md:flex flex-col h-full bg-card border-r transition-all duration-300 ease-in-out z-40',
         isCollapsed ? 'w-[64px]' : 'w-[240px]',
       )}
     >
@@ -296,38 +295,41 @@ const Header = () => {
         <MobileSidebar />
         <h1 className="text-xl font-bold text-foreground">{pageTitle}</h1>
       </div>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="relative h-10 w-auto px-2">
-            <div className="flex items-center gap-2">
-              <div className="text-right hidden sm:block">
-                <p className="text-sm font-medium">{user?.name}</p>
-                <p className="text-xs text-muted-foreground">{user?.role}</p>
+      <div className="flex items-center gap-4">
+        <ThemeToggle />
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="relative h-10 w-auto px-2">
+              <div className="flex items-center gap-2">
+                <div className="text-right hidden sm:block">
+                  <p className="text-sm font-medium">{user?.name}</p>
+                  <p className="text-xs text-muted-foreground">{user?.role}</p>
+                </div>
+                <Avatar className="h-8 w-8">
+                  <AvatarImage
+                    src={`https://img.usecurling.com/ppl/medium?seed=${user?.email}`}
+                    alt={user?.name}
+                  />
+                  <AvatarFallback>{user?.name?.charAt(0)}</AvatarFallback>
+                </Avatar>
               </div>
-              <Avatar className="h-8 w-8">
-                <AvatarImage
-                  src={`https://img.usecurling.com/ppl/medium?seed=${user?.email}`}
-                  alt={user?.name}
-                />
-                <AvatarFallback>{user?.name?.charAt(0)}</AvatarFallback>
-              </Avatar>
-            </div>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-56">
-          <DropdownMenuLabel className="flex flex-col">
-            <span>{user?.name}</span>
-            <span className="text-xs font-normal text-muted-foreground">
-              {user?.email}
-            </span>
-          </DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={logout}>
-            <LogOut className="mr-2 h-4 w-4" />
-            <span>Sair</span>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="w-56">
+            <DropdownMenuLabel className="flex flex-col">
+              <span>{user?.name}</span>
+              <span className="text-xs font-normal text-muted-foreground">
+                {user?.email}
+              </span>
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={logout}>
+              <LogOut className="mr-2 h-4 w-4" />
+              <span>Sair</span>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
     </header>
   )
 }

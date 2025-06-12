@@ -60,10 +60,10 @@ const evolutionData = [
 ]
 
 const productShareData = [
-  { name: 'Produto A', value: 400, fill: 'hsl(var(--chart-1))' },
-  { name: 'Produto B', value: 300, fill: 'hsl(var(--chart-2))' },
-  { name: 'Produto C', value: 300, fill: 'hsl(var(--chart-3))' },
-  { name: 'Produto D', value: 200, fill: 'hsl(var(--chart-4))' },
+  { name: 'Produto A', value: 400 },
+  { name: 'Produto B', value: 300 },
+  { name: 'Produto C', value: 300 },
+  { name: 'Produto D', value: 200 },
 ]
 
 const chartConfig = {
