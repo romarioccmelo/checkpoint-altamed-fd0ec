@@ -21,6 +21,7 @@ interface AuthContextType {
   user: User | null
   login: (email: string, pass: string) => Promise<void>
   logout: () => void
+  mockLogin: () => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -87,6 +88,25 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     })
   }
 
+  const mockLogin = async () => {
+    return new Promise<void>((resolve, reject) => {
+      setTimeout(() => {
+        if (import.meta.env.MODE === 'production') {
+          return reject(new Error('Acesso de demonstração não disponível.'))
+        }
+        const adminUser = MOCK_USERS['admin@altamed.com']
+        if (adminUser) {
+          setUser(adminUser.user)
+          localStorage.setItem('altamed_user', JSON.stringify(adminUser.user))
+          navigate('/dashboard')
+          resolve()
+        } else {
+          reject(new Error('Usuário de demonstração não encontrado.'))
+        }
+      }, 500)
+    })
+  }
+
   const logout = () => {
     setUser(null)
     localStorage.removeItem('altamed_user')
@@ -99,6 +119,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       user,
       login,
       logout,
+      mockLogin,
     }),
     [user],
   )

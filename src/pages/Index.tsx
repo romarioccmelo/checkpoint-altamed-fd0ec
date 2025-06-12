@@ -15,7 +15,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useAuth } from '@/contexts/AuthContext'
 import { useToast } from '@/components/ui/use-toast'
-import { Mail, Lock, LogIn, Eye, EyeOff } from 'lucide-react'
+import { Mail, Lock, LogIn, Eye, EyeOff, Zap } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const loginSchema = z.object({
@@ -28,7 +28,8 @@ type LoginFormValues = z.infer<typeof loginSchema>
 export default function Index() {
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  const { login } = useAuth()
+  const [isMockLoading, setIsMockLoading] = useState(false)
+  const { login, mockLogin } = useAuth()
   const { toast } = useToast()
 
   const form = useForm<LoginFormValues>({
@@ -53,6 +54,26 @@ export default function Index() {
         description: errorMessage,
       })
       setIsLoading(false)
+    }
+  }
+
+  const handleMockLogin = async () => {
+    setIsMockLoading(true)
+    try {
+      await mockLogin()
+      toast({
+        title: 'Login de demonstração bem-sucedido!',
+        description: 'Redirecionando para o dashboard...',
+      })
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : 'Ocorreu um erro desconhecido.'
+      toast({
+        variant: 'destructive',
+        title: 'Falha no login de demonstração',
+        description: errorMessage,
+      })
+      setIsMockLoading(false)
     }
   }
 
@@ -82,6 +103,7 @@ export default function Index() {
                   placeholder="seu-email@altamed.com"
                   className="pl-10"
                   {...form.register('email')}
+                  disabled={isLoading || isMockLoading}
                 />
               </div>
               {form.formState.errors.email && (
@@ -100,12 +122,14 @@ export default function Index() {
                   placeholder="Sua senha"
                   className="pl-10 pr-10"
                   {...form.register('password')}
+                  disabled={isLoading || isMockLoading}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground"
                   aria-label={showPassword ? 'Esconder senha' : 'Mostrar senha'}
+                  disabled={isLoading || isMockLoading}
                 >
                   {showPassword ? (
                     <EyeOff className="h-4 w-4" />
@@ -123,21 +147,55 @@ export default function Index() {
             <div className="flex items-center justify-end text-sm">
               <Link
                 to="/forgot-password"
-                className="text-primary hover:underline"
+                className={cn(
+                  'text-primary hover:underline',
+                  (isLoading || isMockLoading) &&
+                    'pointer-events-none opacity-50',
+                )}
               >
                 Esqueceu sua senha?
               </Link>
             </div>
-            <Button type="submit" className="w-full" disabled={isLoading}>
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={isLoading || isMockLoading}
+            >
               {isLoading ? 'Entrando...' : 'Entrar'}
               {!isLoading && <LogIn className="ml-2 h-4 w-4" />}
             </Button>
           </form>
+
+          {import.meta.env.MODE !== 'production' && (
+            <>
+              <div className="relative my-4 flex items-center">
+                <div className="flex-grow border-t border-border"></div>
+                <span className="flex-shrink mx-4 text-xs uppercase text-muted-foreground">
+                  Ou
+                </span>
+                <div className="flex-grow border-t border-border"></div>
+              </div>
+              <Button
+                variant="secondary"
+                className="w-full"
+                onClick={handleMockLogin}
+                disabled={isLoading || isMockLoading}
+              >
+                {isMockLoading ? 'Acessando...' : 'Acesso Rápido (Admin)'}
+                {!isMockLoading && <Zap className="ml-2 h-4 w-4" />}
+              </Button>
+            </>
+          )}
+
           <div className="mt-4 text-center text-sm">
             Não tem uma conta?{' '}
             <Link
               to="/register"
-              className="text-primary hover:underline font-semibold"
+              className={cn(
+                'text-primary hover:underline font-semibold',
+                (isLoading || isMockLoading) &&
+                  'pointer-events-none opacity-50',
+              )}
             >
               Cadastre-se
             </Link>
