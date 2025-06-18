@@ -171,26 +171,27 @@ export default function Index() {
             </Button>
           </form>
 
-          {import.meta.env.MODE !== 'production' && (
-            <>
-              <div className="relative my-4 flex items-center">
-                <div className="flex-grow border-t border-border"></div>
-                <span className="flex-shrink mx-4 text-xs uppercase text-muted-foreground">
-                  Ou
-                </span>
-                <div className="flex-grow border-t border-border"></div>
-              </div>
-              <Button
-                variant="secondary"
-                className="w-full rounded-sm"
-                onClick={handleMockLogin}
-                disabled={isLoading || isMockLoading}
-              >
-                {isMockLoading ? 'Acessando...' : 'Acesso Rápido (Admin)'}
-                {!isMockLoading && <Zap className="ml-2 h-4 w-4" />}
-              </Button>
-            </>
-          )}
+          <>
+            <div className="relative my-4 flex items-center">
+              <div className="flex-grow border-t border-border"></div>
+              <span className="flex-shrink mx-4 text-xs uppercase text-muted-foreground">
+                Ou
+              </span>
+              <div className="flex-grow border-t border-border"></div>
+            </div>
+            <Button
+              variant="secondary"
+              className="w-full rounded-sm"
+              onClick={handleMockLogin}
+              disabled={isLoading || isMockLoading}
+            >
+              {isMockLoading ? 'Acessando...' : 'Acesso Rápido (Admin)'}
+              {!isMockLoading && <Zap className="ml-2 h-4 w-4" />}
+            </Button>
+            <p className="text-xs text-muted-foreground text-center mt-2">
+              Acesse o sistema sem precisar inserir credenciais
+            </p>
+          </>
 
           <div className="mt-4 text-center text-sm">
             Não tem uma conta?{' '}
