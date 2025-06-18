@@ -28,7 +28,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 const MOCK_USERS: Record<string, { password_hash: string; user: User }> = {
   'vendedor@altamed.com': {
-    password_hash: 'password123',
+    password_hash: 'vendedor123',
     user: {
       name: 'João Silva',
       email: 'vendedor@altamed.com',
@@ -36,7 +36,7 @@ const MOCK_USERS: Record<string, { password_hash: string; user: User }> = {
     },
   },
   'gerente@altamed.com': {
-    password_hash: 'password123',
+    password_hash: 'gerente123',
     user: {
       name: 'Maria Oliveira',
       email: 'gerente@altamed.com',
@@ -44,7 +44,7 @@ const MOCK_USERS: Record<string, { password_hash: string; user: User }> = {
     },
   },
   'admin@altamed.com': {
-    password_hash: 'password123',
+    password_hash: 'admin123',
     user: {
       name: 'Carlos Souza',
       email: 'admin@altamed.com',
@@ -91,9 +91,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const mockLogin = async () => {
     return new Promise<void>((resolve, reject) => {
       setTimeout(() => {
-        if (import.meta.env.MODE === 'production') {
-          return reject(new Error('Acesso de demonstração não disponível.'))
-        }
         const adminUser = MOCK_USERS['admin@altamed.com']
         if (adminUser) {
           setUser(adminUser.user)
