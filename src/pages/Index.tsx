@@ -82,12 +82,12 @@ export default function Index() {
       <Card className="w-full max-w-md shadow-md-3 animate-fade-in rounded-lg">
         <CardHeader className="text-center">
           <img
-            src="/static/logo.png"
+            src="/logo.png"
             alt="Altamed Logo"
             className="h-10 mx-auto mb-4 block dark:hidden"
           />
           <img
-            src="/static/logo2.png"
+            src="/logo2.png"
             alt="Altamed Logo (dark)"
             className="h-10 mx-auto mb-4 hidden dark:block"
           />

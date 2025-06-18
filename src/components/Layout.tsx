@@ -171,12 +171,12 @@ const Sidebar = ({
         {!isCollapsed && (
           <Link to="/dashboard">
             <img
-              src="/static/logo.png"
+              src="/logo.png"
               alt="Logo da Altamed"
               className="h-8 block dark:hidden"
             />
             <img
-              src="/static/logo2.png"
+              src="/logo2.png"
               alt="Logo da Altamed (dark)"
               className="h-8 hidden dark:block"
             />
@@ -245,12 +245,12 @@ const MobileSidebar = () => {
         <div className="p-4 border-b h-16 flex items-center">
           <Link to="/dashboard">
             <img
-              src="/static/logo.png"
+              src="/logo.png"
               alt="Logo da Altamed"
               className="h-8 block dark:hidden"
             />
             <img
-              src="/static/logo2.png"
+              src="/logo2.png"
               alt="Logo da Altamed (dark)"
               className="h-8 hidden dark:block"
             />
