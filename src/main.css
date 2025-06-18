@@ -111,4 +111,13 @@
   .input-material {
     @apply bg-muted/50 border-0 border-b-2 border-transparent rounded-none rounded-t-sm focus:ring-0 focus:border-primary transition-colors;
   }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }

@@ -82,9 +82,14 @@ export default function Index() {
       <Card className="w-full max-w-md shadow-md-3 animate-fade-in rounded-lg">
         <CardHeader className="text-center">
           <img
-            src="https://img.usecurling.com/i?q=altamed&color=blue&shape=solid"
+            src="/static/logo.png"
             alt="Altamed Logo"
-            className="h-10 mx-auto mb-4"
+            className="h-10 mx-auto mb-4 block dark:hidden"
+          />
+          <img
+            src="/static/logo2.png"
+            alt="Altamed Logo (dark)"
+            className="h-10 mx-auto mb-4 hidden dark:block"
           />
           <CardTitle className="text-2xl font-bold text-foreground">
             Bem-vindo(a) de volta!

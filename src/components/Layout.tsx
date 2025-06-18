@@ -171,9 +171,14 @@ const Sidebar = ({
         {!isCollapsed && (
           <Link to="/dashboard">
             <img
-              src="https://img.usecurling.com/i?q=altamed&color=blue&shape=solid"
+              src="/static/logo.png"
               alt="Logo da Altamed"
-              className="h-8"
+              className="h-8 block dark:hidden"
+            />
+            <img
+              src="/static/logo2.png"
+              alt="Logo da Altamed (dark)"
+              className="h-8 hidden dark:block"
             />
           </Link>
         )}
@@ -240,9 +245,14 @@ const MobileSidebar = () => {
         <div className="p-4 border-b h-16 flex items-center">
           <Link to="/dashboard">
             <img
-              src="https://img.usecurling.com/i?q=altamed&color=blue&shape=solid"
+              src="/static/logo.png"
               alt="Logo da Altamed"
-              className="h-8"
+              className="h-8 block dark:hidden"
+            />
+            <img
+              src="/static/logo2.png"
+              alt="Logo da Altamed (dark)"
+              className="h-8 hidden dark:block"
             />
           </Link>
         </div>

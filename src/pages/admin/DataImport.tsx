@@ -15,7 +15,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { FileUp, Play, AlertCircle } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
+import { FileUp, Play, AlertCircle, Calendar, User, FileText } from 'lucide-react'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { useState, useRef, DragEvent, ChangeEvent } from 'react'
 import { cn } from '@/lib/utils'
@@ -67,11 +68,11 @@ const DataImportPage = () => {
   }
 
   return (
-    <div className="space-y-6 animate-fade-in-up">
+    <div className="space-y-4 md:space-y-6 animate-fade-in-up p-4 md:p-0">
       <Card className="shadow-md-1 rounded-lg">
-        <CardHeader>
-          <CardTitle>Upload de Dados</CardTitle>
-          <CardDescription>
+        <CardHeader className="pb-3 md:pb-6">
+          <CardTitle className="text-base md:text-lg">Upload de Dados</CardTitle>
+          <CardDescription className="text-sm">
             Arraste e solte um arquivo ou selecione para fazer o upload.
             Formatos aceitos: .csv, .xlsx
           </CardDescription>
@@ -83,18 +84,18 @@ const DataImportPage = () => {
             onDragEnter={(e) => handleDragEvent(e, true)}
             onDragLeave={(e) => handleDragEvent(e, false)}
             className={cn(
-              `flex flex-col items-center justify-center p-10 border-2 border-dashed rounded-lg cursor-pointer transition-colors`,
+              'flex flex-col items-center justify-center p-6 md:p-10 border-2 border-dashed rounded-lg cursor-pointer transition-colors touch-manipulation',
               isDragging
                 ? 'border-primary bg-secondary'
                 : 'border-border hover:border-primary/50',
             )}
             onClick={() => fileInputRef.current?.click()}
           >
-            <FileUp className="h-12 w-12 text-muted-foreground" />
-            <p className="mt-4 text-sm text-muted-foreground">
+            <FileUp className="h-8 w-8 md:h-12 md:w-12 text-muted-foreground" />
+            <p className="mt-3 md:mt-4 text-xs md:text-sm text-muted-foreground text-center px-2">
               {file
                 ? `Arquivo selecionado: ${file.name}`
-                : 'Arraste e solte ou clique para selecionar'}
+                : 'Arraste e solte ou toque para selecionar'}
             </p>
             <Input
               ref={fileInputRef}
@@ -107,52 +108,91 @@ const DataImportPage = () => {
           {file && (
             <Alert className="rounded-sm">
               <AlertCircle className="h-4 w-4" />
-              <AlertTitle>Validação</AlertTitle>
-              <AlertDescription>
+              <AlertTitle className="text-sm">Validação</AlertTitle>
+              <AlertDescription className="text-xs md:text-sm">
                 Arquivo "{file.name}" pronto para validação. Clique em
                 "Processar Dados" para continuar.
               </AlertDescription>
             </Alert>
           )}
-          <Button disabled={!file} className="w-full sm:w-auto rounded-sm">
-            <Play className="mr-2 h-4 w-4" /> Processar Dados
+          <Button disabled={!file} className="w-full sm:w-auto rounded-sm h-9 md:h-10 text-sm">
+            <Play className="mr-2 h-3 w-3 md:h-4 md:w-4" /> Processar Dados
           </Button>
         </CardContent>
       </Card>
 
       <Card className="shadow-md-1 rounded-lg">
-        <CardHeader>
-          <CardTitle>Histórico de Uploads</CardTitle>
+        <CardHeader className="pb-3 md:pb-6">
+          <CardTitle className="text-base md:text-lg">Histórico de Uploads</CardTitle>
         </CardHeader>
-        <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Arquivo</TableHead>
-                <TableHead>Data</TableHead>
-                <TableHead>Usuário</TableHead>
-                <TableHead>Status</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {mockHistory.map((item) => (
-                <TableRow key={item.id}>
-                  <TableCell>{item.file}</TableCell>
-                  <TableCell>{item.date}</TableCell>
-                  <TableCell>{item.user}</TableCell>
-                  <TableCell
-                    className={cn(
-                      item.status === 'Erro'
-                        ? 'text-destructive'
-                        : 'text-success',
-                    )}
-                  >
-                    {item.status}
-                  </TableCell>
+        <CardContent className="p-0">
+          {/* Desktop Table */}
+          <div className="hidden md:block">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Arquivo</TableHead>
+                  <TableHead>Data</TableHead>
+                  <TableHead>Usuário</TableHead>
+                  <TableHead>Status</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {mockHistory.map((item) => (
+                  <TableRow key={item.id}>
+                    <TableCell className="font-medium">{item.file}</TableCell>
+                    <TableCell>{item.date}</TableCell>
+                    <TableCell>{item.user}</TableCell>
+                    <TableCell>
+                      <Badge
+                        variant={item.status === 'Erro' ? 'destructive' : 'default'}
+                        className="rounded-sm"
+                      >
+                        {item.status}
+                      </Badge>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+
+          {/* Mobile Cards */}
+          <div className="md:hidden space-y-3 p-4">
+            {mockHistory.map((item) => (
+              <Card key={item.id} className="shadow-sm">
+                <CardContent className="p-4">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <FileText className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                        <h3 className="font-semibold text-sm truncate">{item.file}</h3>
+                      </div>
+                    </div>
+                    <Badge
+                      variant={item.status === 'Erro' ? 'destructive' : 'default'}
+                      className="rounded-sm text-xs ml-2 flex-shrink-0"
+                    >
+                      {item.status}
+                    </Badge>
+                  </div>
+                  
+                  <div className="space-y-2 text-xs">
+                    <div className="flex items-center gap-2">
+                      <Calendar className="h-3 w-3 text-muted-foreground flex-shrink-0" />
+                      <span className="text-muted-foreground">Data:</span>
+                      <span className="font-medium">{item.date}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <User className="h-3 w-3 text-muted-foreground flex-shrink-0" />
+                      <span className="text-muted-foreground">Usuário:</span>
+                      <span className="font-medium truncate">{item.user}</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </CardContent>
       </Card>
     </div>
